@@ -2,11 +2,11 @@ $blue: rgb(176, 195, 255);
 $lightblue: rgb(230, 230, 230);
 
 .interactiveTable {
-    max-width: 900px;
+    max-width: 100%;
     margin: 0 auto;
     box-sizing: border-box;
     position: relative;
-    max-height: 98vh;
+    max-height: 100vh;
     overflow: auto;
 
     * {
