@@ -1,0 +1,72 @@
+$blue: rgb(176, 195, 255);
+$lightblue: rgb(230, 230, 230);
+
+.interactiveTable {
+    max-width: 900px;
+    margin: 0 auto;
+    box-sizing: border-box;
+    position: relative;
+    max-height: 98vh;
+    overflow: auto;
+
+    * {
+        box-sizing: border-box;
+    }
+
+    table {
+        border-collapse: collapse;
+    }
+
+    td, th, span {
+        padding: 15px 20px;
+    }
+
+    span {
+        display: inline-block;
+        vertical-align: middle;
+    }
+    
+    thead {
+
+        th {
+            background-color: $blue;
+            position: sticky;
+            top: 0;
+            z-index: 1;
+
+            &:first-child {
+                left: 0;
+                width: 25%;
+                padding: 0;
+                z-index: 2;
+                min-width: 300px;
+            }
+        }
+    }
+    
+    tbody {
+        th {
+            left: 0;
+            padding: 0;
+            z-index: 1;
+            position: sticky;
+            background-color: $lightblue;
+        }
+    }    
+
+    &__numbering {
+        width: 70px;
+        text-align: center;
+        padding-left: 10px !important;
+        padding-right: 10px !important;
+    }
+
+    &__mainItem {
+        width: calc(60% - 35px);
+    }
+
+    &__secondaryItem {
+        width: calc(40% - 35px);
+    }      
+}
+
