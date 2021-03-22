@@ -6,12 +6,13 @@ const API = {
     getPortionData: (pageSize, pageNumber) => {
         const startIndex = (pageNumber * pageSize) - 1;
         const endIndex = startIndex + pageSize;
-    
-        const portionData = response.body.map((item, index) => {
-            if (index > startIndex && index <= endIndex) {
-                return item;
+        const portionData = [];
+
+        for(let i = 0; i < response.body.length; i++) {
+            if (i > startIndex && i <= endIndex) {
+                portionData.push(response.body[i]);
             }
-        })
+        }
     
         return portionData;
     }

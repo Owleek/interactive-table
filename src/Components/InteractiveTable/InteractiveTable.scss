@@ -2,7 +2,7 @@ $blue: rgb(176, 195, 255);
 $lightblue: rgb(230, 230, 230);
 
 .interactiveTable {
-    max-width: 100%;
+    max-width: 900px;
     margin: 0 auto;
     box-sizing: border-box;
     position: relative;
@@ -22,6 +22,7 @@ $lightblue: rgb(230, 230, 230);
     }
 
     span {
+        width: calc(50% - 35px);
         display: inline-block;
         vertical-align: middle;
     }
@@ -33,13 +34,14 @@ $lightblue: rgb(230, 230, 230);
             position: sticky;
             top: 0;
             z-index: 1;
+            white-space: pre-line;
 
             &:first-child {
                 left: 0;
                 width: 25%;
                 padding: 0;
                 z-index: 2;
-                min-width: 300px;
+                min-width: 400px;
             }
         }
     }
@@ -55,18 +57,10 @@ $lightblue: rgb(230, 230, 230);
     }    
 
     &__numbering {
-        width: 70px;
+        width: 70px !important;
         text-align: center;
         padding-left: 10px !important;
         padding-right: 10px !important;
     }
-
-    &__mainItem {
-        width: calc(60% - 35px);
-    }
-
-    &__secondaryItem {
-        width: calc(40% - 35px);
-    }      
 }
 

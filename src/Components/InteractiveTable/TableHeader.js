@@ -1,34 +1,30 @@
 import React from 'react';
 
-const TableHeader = (props) => {
+const TableHeader = ({ headlines }) => {
+    let headlineList = [];
+    let sideHeadlines = [];
+
+    if(headlines) {
+        
+        for(let i = 0; i < 2; i++) {
+            sideHeadlines.push( <span>{ headlines[i].title }</span> )
+        }
+
+        headlineList = headlines && headlines.map( (item, index) => {
+            if (index > 1) {
+                return <th>{ item.title }</th>
+            }
+        })
+    }
+
     return (
         <thead>
             <tr>
                 <th>
-                        <span className="interactiveTable__numbering">№</span>
-                        <span className="interactiveTable__mainItem">position</span>
-                        <span className="interactiveTable__secondaryItem">code</span>
+                    <span className="interactiveTable__numbering">№</span>
+                    { sideHeadlines }
                 </th>
-                <th>title1</th>
-                <th>title2</th>
-                <th>title3</th>
-                <th>title4</th>
-                <th>title5</th>
-                <th>title6</th>
-                <th>title6</th>
-                <th>title6</th>
-                <th>title6</th>
-                <th>title6</th>
-                <th>title6</th>
-                <th>title6</th>
-                <th>title6</th>
-                <th>title6</th>
-                <th>title6</th>
-                <th>title6</th>
-                <th>title6</th>
-                <th>title6</th>
-                <th>title6</th>
-                <th>title6</th>
+                { headlineList }
             </tr>
         </thead>
     );
