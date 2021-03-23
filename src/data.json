@@ -2,35 +2,43 @@
     "headlines": [ 
         {
             "title": "Наименование",
-            "key": "title"
+            "key": "title",
+            "rule": "text"
         },
         {
             "title": "Код товара",
-            "key": "id"
+            "key": "id",
+            "rule": "number"
         },
         {
             "title": "Доставлено",
-            "key": "availability"
+            "key": "availability",
+            "rule": "text"
         },
         {
             "title": "Вес",
-            "key": "weight"
+            "key": "weight",
+            "rule": "number"
         },
         {
             "title": "Количество боксов",
-            "key": "box"
+            "key": "box",
+            "rule": "number"
         },
         {
             "title": "План",
-            "key": "plan"
+            "key": "plan",
+            "rule": "number"
         },
         {
             "title": "Затраты",
-            "key": "cost"
+            "key": "cost",
+            "rule": "number"
         },
         {
             "title": "Число",
-            "key": "decimal"
+            "key": "decimal",
+            "rule": "number"
         }
     ],
     "body": [
@@ -101,7 +109,7 @@
             "weight": "6 кг",
             "box": "3 шт",
             "plan": "13 %",
-            "cost": "63 руб3",
+            "cost": "63 руб",
             "decimal": "12"
         },
         {
@@ -141,7 +149,7 @@
             "weight": "11 кг",
             "box": "6 шт",
             "plan": "52 %",
-            "cost": "68 руб7",
+            "cost": "68 руб",
             "decimal": "78"
         }
     ]

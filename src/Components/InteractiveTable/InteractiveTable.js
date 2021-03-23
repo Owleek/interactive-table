@@ -7,16 +7,25 @@ import './InteractiveTable.scss';
 
 class InteractiveTable extends Component {
 
+    componentDidMount () {
+        this.uploadData();
+    }
+
     state = {
         headlines: null,
         body: [],
-        portionNumber: 0
+        portionNumber: 0,
+        key: null,
+        rule: 'text',
+        sortLabels: null,
     }
 
     container = React.createRef();
 
-    componentDidMount () {
-        this.uploadData();
+    sortASC = (key, rule) => {
+        this.setState((state) => {
+            return {key, rule, sortLabels: {...state.sortLabels, [key]: !state.sortLabels[key]}};
+        });
     }
 
     checkScrollTop = () => {
@@ -29,8 +38,18 @@ class InteractiveTable extends Component {
 
     uploadData = () => {
         if(!this.state.headlines) {
-            this.setState( ()=>{
-                return { headlines: Api.getHeadlines()}
+            this.setState( () => {
+
+                const newObj = {};
+                const headlines = Api.getHeadlines();
+
+                headlines.forEach( item => {
+                    newObj[item.key] = true;
+                })
+            
+                return { headlines: headlines,
+                    sortLabels: {...newObj}
+                }
             })
         }
 
@@ -45,38 +64,22 @@ class InteractiveTable extends Component {
         return (
             <div className='interactiveTable' onScroll={this.checkScrollTop} ref={this.container}>
                 <table>
-                    <TableHeader headlines={this.state.headlines}/>
-                    <TableBody body={this.state.body} headlines={this.state.headlines}/>
+                    <TableHeader headlines={this.state.headlines} 
+                                    sortASC={this.sortASC} 
+                                    sortDSC={this.sortDSC}
+                                    setSortButtons={this.setSortButtons}
+                                    sortLabels={this.state.sortLabels}
+                                    />
+                    <TableBody body={this.state.body} 
+                                headlines={this.state.headlines} 
+                                colName={this.state.key}
+                                rule={this.state.rule}
+                                sortLabels={this.state.sortLabels}
+                                />
                 </table>
             </div>
         )
     }
 }
-// const InteractiveTable = () => {
-    
-//     const [headlines, setHeadlines] = useState(null);
-//     const [body, setBody] = useState(null);
-//     const [portionNumber, setPortionNumber] = useState(0);
-
-//     const uploadData = () => {
-//         (!headlines) && setHeadlines(Api.getHeadlines());        
-//         setBody(Api.getPortionData(4, portionNumber))
-//         setPortionNumber(portionNumber + 1);
-//     }
-
-
-//     useEffect(()=>{
-//         uploadData();
-//     }, [headlines])
-
-//     return (
-//         <div className='interactiveTable'>
-//             <table>
-//                 <TableHeader headlines={headlines}/>
-//                 <TableBody body={body} headlines={headlines}/>
-//             </table>
-//         </div>
-//     )
-// }
 
 export default InteractiveTable;

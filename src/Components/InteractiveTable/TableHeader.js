@@ -1,6 +1,7 @@
 import React from 'react';
 
-const TableHeader = ({ headlines }) => {
+const TableHeader = ({ headlines, sortASC, sortDSC, sortLabels}) => {
+
     let headlineList = [];
     let sideHeadlines = [];
 
@@ -12,7 +13,16 @@ const TableHeader = ({ headlines }) => {
 
         headlineList = headlines && headlines.map( (item, index) => {
             if (index > 1) {
-                return <th>{ item.title }</th>
+
+                const button = <button onClick={ () => sortASC(item.key, item.rule) }>
+                                    {sortLabels[item.key] ? '↑': '↓'} 
+                                </button>
+
+                return <th>{ item.title }<br/> 
+                    <nobr>
+                    сортировать: { button }
+                    </nobr>
+                </th>
             }
         })
     }
