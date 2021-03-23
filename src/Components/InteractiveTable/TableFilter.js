@@ -10,14 +10,11 @@ const TableFilter = ({ setFilter, removeFilter, ...props }) => {
         deliveryValues = [],
         delivery = ['Мелкие поставки', 'Крупные поставки'];
     
-    const [fruitBusy, setFruitState] = useState([]);
-    const [deliveryBusy, setDeliveryState] = useState([]);
 
-    useEffect(()=>{
-        setFruitState(fruitValues);
-        setDeliveryState(deliveryValues);
-    }, [setFilter])
+    const [fruitBusy, setFruitState] = useState('');
+    const [deliveryBusy, setDeliveryState] = useState('');
     
+
     const handleCheckbox = (event) => {
         let elem = event.target.value,
             checked = event.target.checked,
@@ -25,34 +22,42 @@ const TableFilter = ({ setFilter, removeFilter, ...props }) => {
 
         if(selectType === fruitsPrefix) {
             if(checked) {
-                setFruitState([elem]);
+                if(elem !== fruitBusy) {
+                    removeFilter(fruitBusy);
+                }
+
+                setFruitState(elem);
                 setFilter(elem);
             } else {
-                setFruitState(fruitValues);
+                setFruitState('');
                 removeFilter(elem);
             }
         }
 
         if(selectType === deliveryPrefix) {
             if(checked) {
-                setDeliveryState([elem])
+                if(elem !== deliveryBusy) {
+                    removeFilter(deliveryBusy);
+                }
+
+                setDeliveryState(elem)
                 setFilter(elem);
             } else {
-                setDeliveryState(deliveryValues);
+                setDeliveryState('');
                 removeFilter(elem);
             }
         }
     }
 
     const checkFruitBusy = (value) => {
-        return !fruitBusy.includes(value)
+        return (fruitBusy === value)
     }
 
     const checkDeliveryBusy = (value) => {
-        return !deliveryBusy.includes(value)
+        return (deliveryBusy === value)
     }
 
-    const createFields = (data, productPrefix, array, disabledFunc) => {
+    const createFields = (data, productPrefix, array, checkFunc) => {
         return data.map( (item, index) => {
             let value = productPrefix+index;
             array.push(value);
@@ -60,7 +65,7 @@ const TableFilter = ({ setFilter, removeFilter, ...props }) => {
             return (
                     <li>
                         <label>
-                            <input type="checkbox" disabled={disabledFunc(value)} value={value} onChange={handleCheckbox}/>
+                            <input type="checkbox" checked={checkFunc(value)} value={value} onChange={handleCheckbox}/>
                             {item} 
                         </label>
                     </li>

@@ -15,12 +15,12 @@ const TableBody = ({ body, headlines, colName, rule, sortLabels, filter, berryVo
                 switch(elem) {
                     case 'd0': 
                         filteredData = filteredData.filter( item => {
-                            return (parseFloat(item.box) <= 50)
+                            return (parseFloat(item.weight) <= 40)
                         });
                         break;
                     case 'd1':
                         filteredData = filteredData.filter( item => {
-                            return (parseFloat(item.box) > 50)
+                            return (parseFloat(item.weight) > 40)
                         });
                         break;
                     case 'f0':
