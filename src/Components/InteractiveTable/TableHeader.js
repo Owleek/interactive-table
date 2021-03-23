@@ -1,6 +1,6 @@
 import React from 'react';
 
-const TableHeader = ({ headlines, sortASC, sortDSC, sortLabels}) => {
+const TableHeader = ({ headlines, sortASC, sortLabels}) => {
 
     let headlineList = [];
     let sideHeadlines = [];

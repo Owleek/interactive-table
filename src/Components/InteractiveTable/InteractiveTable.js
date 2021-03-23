@@ -1,7 +1,9 @@
 import React, { useState, useEffect, Component } from 'react';
+import TableFilter from './TableFilter';
 import TableHeader from './TableHeader';
 import TableBody from './TableBody';
 import Api from '../../api';
+import { fruitvVocabulary, berryVocabulary } from '../../vocabulary';
 import './InteractiveTable.scss';
 
 
@@ -18,6 +20,7 @@ class InteractiveTable extends Component {
         key: null,
         rule: 'text',
         sortLabels: null,
+        filter: null,
     }
 
     container = React.createRef();
@@ -63,19 +66,18 @@ class InteractiveTable extends Component {
     render () {
         return (
             <div className='interactiveTable' onScroll={this.checkScrollTop} ref={this.container}>
+                <TableFilter />
                 <table>
                     <TableHeader headlines={this.state.headlines} 
-                                    sortASC={this.sortASC} 
-                                    sortDSC={this.sortDSC}
-                                    setSortButtons={this.setSortButtons}
-                                    sortLabels={this.state.sortLabels}
-                                    />
+                                 sortASC={this.sortASC} 
+                                 sortLabels={this.state.sortLabels}
+                            />
                     <TableBody body={this.state.body} 
-                                headlines={this.state.headlines} 
-                                colName={this.state.key}
-                                rule={this.state.rule}
-                                sortLabels={this.state.sortLabels}
-                                />
+                               headlines={this.state.headlines} 
+                               colName={this.state.key}
+                               rule={this.state.rule}
+                               sortLabels={this.state.sortLabels}
+                            />
                 </table>
             </div>
         )

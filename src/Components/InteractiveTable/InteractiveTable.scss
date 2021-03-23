@@ -21,6 +21,11 @@ $lightblue: rgb(230, 230, 230);
         padding: 15px 20px;
     }
 
+    ul {
+        list-style: none;
+        text-align-last: left;
+    }
+
     span {
         width: calc(50% - 35px);
         display: inline-block;
