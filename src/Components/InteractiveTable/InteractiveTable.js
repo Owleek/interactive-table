@@ -20,7 +20,7 @@ class InteractiveTable extends Component {
         key: null,
         rule: 'text',
         sortLabels: null,
-        filter: null,
+        filter: [],
     }
 
     container = React.createRef();
@@ -28,6 +28,20 @@ class InteractiveTable extends Component {
     sortASC = (key, rule) => {
         this.setState((state) => {
             return {key, rule, sortLabels: {...state.sortLabels, [key]: !state.sortLabels[key]}};
+        });
+    }
+
+    setFilter = (value) => {
+        this.setState((state) => {
+            return {filter: [...state.filter, value]};
+        });
+    }
+
+    removeFilter = (value) => {
+        this.setState((state) => {
+            return {filter: state.filter.filter( item => {
+                return (item !== value)
+            })};
         });
     }
 
@@ -66,7 +80,7 @@ class InteractiveTable extends Component {
     render () {
         return (
             <div className='interactiveTable' onScroll={this.checkScrollTop} ref={this.container}>
-                <TableFilter />
+                <TableFilter setFilter={this.setFilter} removeFilter={this.removeFilter} />
                 <table>
                     <TableHeader headlines={this.state.headlines} 
                                  sortASC={this.sortASC} 
@@ -77,6 +91,7 @@ class InteractiveTable extends Component {
                                colName={this.state.key}
                                rule={this.state.rule}
                                sortLabels={this.state.sortLabels}
+                               filter={this.state.filter}
                             />
                 </table>
             </div>

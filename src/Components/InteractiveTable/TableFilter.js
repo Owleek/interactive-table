@@ -1,13 +1,14 @@
 import React, { useEffect, useState } from "react";
 
-const TableFilter = (props) => {
-    let fruitsPrefix = 'f';
-    let fruitValues = [];
-    let fruits = ['Фрукты', 'Ягоды'];
+const TableFilter = ({ setFilter, removeFilter, ...props }) => {
+    
+    let fruitsPrefix = 'f',
+        fruitValues = [],
+        fruits = ['Фрукты', 'Ягоды'];
 
-    let deliveryPrefix = 'd';
-    let deliveryValues = [];
-    let delivery = ['Мелкие поставки', 'Крупные поставки'];
+    let deliveryPrefix = 'd',
+        deliveryValues = [],
+        delivery = ['Мелкие поставки', 'Крупные поставки'];
     
     const [fruitBusy, setFruitState] = useState([]);
     const [deliveryBusy, setDeliveryState] = useState([]);
@@ -15,19 +16,31 @@ const TableFilter = (props) => {
     useEffect(()=>{
         setFruitState(fruitValues);
         setDeliveryState(deliveryValues);
-    }, [props])
+    }, [setFilter])
     
     const handleCheckbox = (event) => {
-        let elem = event.target.value;
-        let checked = event.target.checked;
-        let selectType = elem[0];
+        let elem = event.target.value,
+            checked = event.target.checked,
+            selectType = elem[0];
 
         if(selectType === fruitsPrefix) {
-            checked ? setFruitState([elem]): setFruitState(fruitValues);
+            if(checked) {
+                setFruitState([elem]);
+                setFilter(elem);
+            } else {
+                setFruitState(fruitValues);
+                removeFilter(elem);
+            }
         }
 
         if(selectType === deliveryPrefix) {
-            checked ? setDeliveryState([elem]): setDeliveryState(deliveryValues);
+            if(checked) {
+                setDeliveryState([elem])
+                setFilter(elem);
+            } else {
+                setDeliveryState(deliveryValues);
+                removeFilter(elem);
+            }
         }
     }
 
@@ -54,8 +67,6 @@ const TableFilter = (props) => {
             )
         }) 
     }
-
-
 
     return (
         <div>

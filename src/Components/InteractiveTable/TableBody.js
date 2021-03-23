@@ -1,24 +1,42 @@
 import React from 'react';
 
-const TableBody = ({ body, headlines, colName, rule, sortLabels }) => {
-    let rowList = null;
+const TableBody = ({ body, headlines, colName, rule, sortLabels, filter }) => {
+    debugger
     
+    let rowList = null;
+
     if (body && headlines) {
         let iterationsCount = 0;
-        let arr = body;
 
+        let filteredData = [];
+
+        if(filter.length > 0) {
+
+            let elem = filter[0];
+    
+            if(elem === 'd1') {
+    
+                filteredData = body.filter( item => {
+                    return (parseFloat(item.box) > 40)
+                })
+                debugger
+                
+            }
+        } else {
+            filteredData = [...body];
+        }
+    
 
         if(colName) {
-            const copy = [...body];
 
             if(rule === 'number') {
 
                 if(sortLabels[colName]) {
-                    copy.sort( (rowA, rowB) => {
+                    filteredData.sort( (rowA, rowB) => {
                         return parseFloat(rowA[colName]) - parseFloat(rowB[colName])
                     })
                 } else {
-                    copy.sort( (rowA, rowB) => {
+                    filteredData.sort( (rowA, rowB) => {
                         return parseFloat(rowB[colName]) - parseFloat(rowA[colName])
                     })
                 }
@@ -27,23 +45,19 @@ const TableBody = ({ body, headlines, colName, rule, sortLabels }) => {
             } else {
 
                 if(sortLabels[colName]) {
-                    copy.sort( (rowA, rowB) => {
+                    filteredData.sort( (rowA, rowB) => {
                         return rowA[colName] > rowB[colName] ? 1 : -1
                     })
                 } else {
-                    copy.sort( (rowA, rowB) => {
+                    filteredData.sort( (rowA, rowB) => {
                         return rowA[colName] < rowB[colName] ? 1 : -1
                     })
                 }
             }
-
-
-            arr = copy;
         }
 
 
-
-        rowList = arr.map( item => {
+        rowList = filteredData.map( item => {
             iterationsCount++
             const sideCells = [];
             const cells = [];
