@@ -1,27 +1,44 @@
 import React from 'react';
 
-const TableBody = ({ body, headlines, colName, rule, sortLabels, filter }) => {
-    debugger
-    
+const TableBody = ({ body, headlines, colName, rule, sortLabels, filter, berryVocabulary, fruitVocabulary }) => {    
     let rowList = null;
 
     if (body && headlines) {
         let iterationsCount = 0;
 
-        let filteredData = [];
+        let filteredData = [...body];
 
         if(filter.length > 0) {
+            for(let i = 0; i < filter.length; i++){
 
-            let elem = filter[0];
-    
-            if(elem === 'd1') {
-    
-                filteredData = body.filter( item => {
-                    return (parseFloat(item.box) > 40)
-                })
-                debugger
+                let elem = filter[i];
+                switch(elem) {
+                    case 'd0': 
+                        filteredData = filteredData.filter( item => {
+                            return (parseFloat(item.box) <= 50)
+                        });
+                        break;
+                    case 'd1':
+                        filteredData = filteredData.filter( item => {
+                            return (parseFloat(item.box) > 50)
+                        });
+                        break;
+                    case 'f0':
+                        filteredData = filteredData.filter( item => {
+                            return fruitVocabulary.includes(item.title)
+                        });
+                        break;
+                    case 'f1':
+                        filteredData = filteredData.filter( item => {
+                            return berryVocabulary.includes(item.title)
+                        });
+                        break;
+                    default: 
+                        break;
+                }
                 
             }
+
         } else {
             filteredData = [...body];
         }
@@ -40,7 +57,6 @@ const TableBody = ({ body, headlines, colName, rule, sortLabels, filter }) => {
                         return parseFloat(rowB[colName]) - parseFloat(rowA[colName])
                     })
                 }
-
 
             } else {
 

@@ -3,7 +3,7 @@ import TableFilter from './TableFilter';
 import TableHeader from './TableHeader';
 import TableBody from './TableBody';
 import Api from '../../api';
-import { fruitvVocabulary, berryVocabulary } from '../../vocabulary';
+import { fruitVocabulary, berryVocabulary } from '../../vocabulary';
 import './InteractiveTable.scss';
 
 
@@ -92,6 +92,8 @@ class InteractiveTable extends Component {
                                rule={this.state.rule}
                                sortLabels={this.state.sortLabels}
                                filter={this.state.filter}
+                               fruitVocabulary={fruitVocabulary}
+                               berryVocabulary={berryVocabulary}
                             />
                 </table>
             </div>
