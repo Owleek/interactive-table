@@ -1,12 +1,29 @@
 import React from 'react';
 
-const TableBody = ({ body, headlines, colName, rule, sortLabels, filter, berryVocabulary, fruitVocabulary }) => {    
+const TableBody = ({ body, headlines, colName, rule, sortLabels, filter, berryVocabulary, fruitVocabulary, hiddenColumns }) => {    
     let rowList = null;
+    
+    let filteredData = [...body];
+    let filteredHeadlines = [...headlines];
 
-    if (body && headlines) {
+
+    if (body && headlines.length > 0) {
         let iterationsCount = 0;
 
-        let filteredData = [...body];
+        if(hiddenColumns.length > 0) {
+            for(let i = 0; i < hiddenColumns.length; i++){
+    
+                let elem = hiddenColumns[i];
+    
+                filteredHeadlines = filteredHeadlines.filter( item => {
+                    return !(item.key === elem)
+                })
+            }
+    
+        } else {
+            filteredHeadlines = [...headlines];
+        }
+        
 
         if(filter.length > 0) {
             for(let i = 0; i < filter.length; i++){
@@ -78,7 +95,7 @@ const TableBody = ({ body, headlines, colName, rule, sortLabels, filter, berryVo
             const sideCells = [];
             const cells = [];
 
-            headlines.forEach( (headline, index) => {
+            filteredHeadlines.forEach( (headline, index) => {
                 if(index <= 1) {
                     item[headline.key] 
                     ? sideCells.push( <span>{ item[headline.key] }</span> )

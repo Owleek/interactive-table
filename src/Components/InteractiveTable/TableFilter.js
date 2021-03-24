@@ -1,11 +1,12 @@
 import React, { useEffect, useState } from "react";
+import Tag from './Tag';
 
-const TableFilter = ({ setFilter, removeFilter, ...props }) => {
+const TableFilter = ({ setFilter, removeFilter, hiddenColumns, showColumn }) => {
     
     let fruitsPrefix = 'f',
         fruitValues = [],
         fruits = ['Фрукты', 'Ягоды'];
-
+ 
     let deliveryPrefix = 'd',
         deliveryValues = [],
         delivery = ['Мелкие поставки', 'Крупные поставки'];
@@ -73,6 +74,22 @@ const TableFilter = ({ setFilter, removeFilter, ...props }) => {
         }) 
     }
 
+    let hiddenBlock = null;
+
+    if(hiddenColumns.length > 0) {
+
+        hiddenBlock = <div className="InteractiveTable__tagsContainer">
+                        Скрытые колонки:
+                        <div className="InteractiveTable__tags">
+                            {
+                                hiddenColumns.map( item => {
+                                    return <Tag content={item} callback={ () => showColumn(item) }/>
+                                })
+                            }
+                        </div>
+                    </div>
+    }
+
     return (
         <div>
             <h4>Фильтр:</h4>
@@ -80,6 +97,7 @@ const TableFilter = ({ setFilter, removeFilter, ...props }) => {
                 { createFields(fruits, fruitsPrefix, fruitValues, checkFruitBusy) }
                 { createFields(delivery, deliveryPrefix, deliveryValues, checkDeliveryBusy) }
             </ul>
+            { hiddenBlock }
         </div>
     )
 }

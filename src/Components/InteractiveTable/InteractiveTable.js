@@ -14,16 +14,36 @@ class InteractiveTable extends Component {
     }
 
     state = {
-        headlines: null,
         body: [],
+        headlines: [],
         portionNumber: 0,
         key: null,
         rule: 'text',
         sortLabels: null,
         filter: [],
+        hiddenColumns: []
     }
 
     container = React.createRef();
+
+
+    showColumn = (column) => {
+        this.setState((state) => {
+            return {
+                hiddenColumns: state.hiddenColumns.filter( item => {
+                    return (item !== column)
+                })
+            }
+        })
+    }
+
+    hideColumn = (column) => {
+        this.setState((state) => {
+            return {
+                hiddenColumns: [...state.hiddenColumns, column]
+            }
+        })
+    }
 
     sortASC = (key, rule) => {
         this.setState((state) => {
@@ -54,7 +74,7 @@ class InteractiveTable extends Component {
     }
 
     uploadData = () => {
-        if(!this.state.headlines) {
+        if(this.state.headlines.length === 0) {
             this.setState( () => {
 
                 const newObj = {};
@@ -80,11 +100,17 @@ class InteractiveTable extends Component {
     render () {
         return (
             <div className='interactiveTable' onScroll={this.checkScrollTop} ref={this.container}>
-                <TableFilter setFilter={this.setFilter} removeFilter={this.removeFilter} />
+                <TableFilter setFilter={this.setFilter} 
+                             removeFilter={this.removeFilter} 
+                             hiddenColumns={this.state.hiddenColumns}
+                             showColumn={this.showColumn}
+                        />
                 <table>
                     <TableHeader headlines={this.state.headlines} 
                                  sortASC={this.sortASC} 
                                  sortLabels={this.state.sortLabels}
+                                 hideColumn={this.hideColumn}
+                                 hiddenColumns={this.state.hiddenColumns}
                             />
                     <TableBody body={this.state.body} 
                                headlines={this.state.headlines} 
@@ -94,6 +120,7 @@ class InteractiveTable extends Component {
                                filter={this.state.filter}
                                fruitVocabulary={fruitVocabulary}
                                berryVocabulary={berryVocabulary}
+                               hiddenColumns={this.state.hiddenColumns}
                             />
                 </table>
             </div>
