@@ -99,6 +99,8 @@ class InteractiveTable extends Component {
 
     render () {
         if(this.state.body.length > 0 && this.state.body.length > 0) {
+            const filterRef = React.createRef();
+
             const filteredHeadlines = filterHeadlines(this.state.headlines, this.state.hiddenColumns)
             const filteredBody = filterBody(this.state.body, this.state.filter, this.state.key, this.state.rule, this.state.sortLabels)
             const inTotal = calculateData(filteredBody, filteredHeadlines)
@@ -109,6 +111,7 @@ class InteractiveTable extends Component {
                                 removeFilter={this.removeFilter} 
                                 hiddenColumns={this.state.hiddenColumns}
                                 showColumn={this.showColumn}
+                                itemRef = {filterRef}
                             />
                     <table>
                         <TableHeader headlines={filteredHeadlines} 
@@ -117,6 +120,7 @@ class InteractiveTable extends Component {
                                     hideColumn={this.hideColumn}
                                     hiddenColumns={this.state.hiddenColumns}
                                     inTotal={inTotal}
+                                    itemRef={filterRef}
                                 />
                         <TableBody body={filteredBody} headlines={filteredHeadlines} />
                     </table>

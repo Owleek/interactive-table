@@ -1,9 +1,9 @@
 import React, {useEffect, useRef, useState} from 'react';
 
-const TableHeader = ({ headlines, setSort, sortLabels, hideColumn, inTotal }) => {
-    debugger
+const TableHeader = ({ headlines, setSort, sortLabels, hideColumn, inTotal, itemRef }) => {
 
     const headerRow = React.createRef();
+    const [filterHeight, setFilterHeight] = useState(0);
     const [headerRowHeight, setHeaderRowHeight] = useState(0);
 
     let sideHeadlines = [];
@@ -19,7 +19,7 @@ const TableHeader = ({ headlines, setSort, sortLabels, hideColumn, inTotal }) =>
                                 {sortLabels[item.key] ? '↑': '↓'} 
                             </button>
 
-            return <th className="th">
+            return <th className="th" style={{top: filterHeight+'px'}}>
                 <button onClick={ () => hideColumn(item.key) }>x</button><br/>
                 { item.title }<br/> 
                 <nobr>
@@ -40,13 +40,14 @@ const TableHeader = ({ headlines, setSort, sortLabels, hideColumn, inTotal }) =>
     })
 
     useEffect(()=>{
-        setHeaderRowHeight(headerRow.current.offsetHeight);
-    }, [headlines])
+        setFilterHeight(itemRef.current.offsetHeight);
+        setHeaderRowHeight(headerRow.current.offsetHeight + filterHeight);
+    })
 
     return (
         <thead>
             <tr ref={headerRow}>
-                <th className="th">
+                <th className="th" style={{top: filterHeight+'px'}}>
                     <span className="interactiveTable__numbering">№</span>
                     { sideHeadlines }
                 </th>

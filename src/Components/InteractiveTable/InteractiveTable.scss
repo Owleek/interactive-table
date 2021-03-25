@@ -38,7 +38,6 @@ $lightblue: rgb(230, 230, 230);
         .th {
             background-color: $blue;
             position: sticky;
-            top: 0;
             z-index: 1;
             white-space: pre-line;
 
@@ -105,12 +104,33 @@ $lightblue: rgb(230, 230, 230);
     }
 }
 
-.InteractiveTable__tagsContainer {
-    margin-bottom: 20px;
+.interactiveTable__filterContainer {
+    background: white;
+    position: sticky;
+    top: 0; left: 0;
+    z-index: 3;
+    padding-top: 20px;
+    padding-bottom: 1px;
+
+    ul {
+        margin: 0;
+        padding-left: 0;
+        margin-bottom: 10px;
+    }
+
+    h4 {
+        margin: 0;
+        margin-bottom: 20px;
+    }
+}
+
+.interactiveTable__tagsContainer {
+    margin-bottom: 10px;
     text-align: left;
 }
 
-.InteractiveTable__tags {
+
+.interactiveTable__tags {
     display: inline-block;
     margin-left: 10px;
 }

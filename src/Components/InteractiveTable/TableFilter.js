@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import Tag from './Tag';
 
-const TableFilter = ({ setFilter, removeFilter, hiddenColumns, showColumn }) => {
+const TableFilter = ({ setFilter, removeFilter, hiddenColumns, showColumn, itemRef }) => {
     
     let fruitsPrefix = 'f',
         fruitValues = [],
@@ -80,9 +80,9 @@ const TableFilter = ({ setFilter, removeFilter, hiddenColumns, showColumn }) => 
 
 
 
-        hiddenBlock = <div className="InteractiveTable__tagsContainer">
+        hiddenBlock = <div className="interactiveTable__tagsContainer">
                         Скрытые колонки:
-                        <div className="InteractiveTable__tags">
+                        <div className="interactiveTable__tags">
                             {
                                 hiddenColumns.map( item => {
                                     let value = '';
@@ -116,7 +116,7 @@ const TableFilter = ({ setFilter, removeFilter, hiddenColumns, showColumn }) => 
     }
 
     return (
-        <div>
+        <div className="interactiveTable__filterContainer" ref={itemRef}>
             <h4>Фильтр:</h4>
             <ul>
                 { createFields(fruits, fruitsPrefix, fruitValues, checkFruitBusy) }
