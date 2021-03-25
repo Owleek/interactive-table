@@ -4,26 +4,10 @@ const TableBody = ({ body, headlines, colName, rule, sortLabels, filter, berryVo
     let rowList = null;
     
     let filteredData = [...body];
-    let filteredHeadlines = [...headlines];
 
 
     if (body && headlines.length > 0) {
         let iterationsCount = 0;
-
-        if(hiddenColumns.length > 0) {
-            for(let i = 0; i < hiddenColumns.length; i++){
-    
-                let elem = hiddenColumns[i];
-    
-                filteredHeadlines = filteredHeadlines.filter( item => {
-                    return !(item.key === elem)
-                })
-            }
-    
-        } else {
-            filteredHeadlines = [...headlines];
-        }
-        
 
         if(filter.length > 0) {
             for(let i = 0; i < filter.length; i++){
@@ -95,7 +79,7 @@ const TableBody = ({ body, headlines, colName, rule, sortLabels, filter, berryVo
             const sideCells = [];
             const cells = [];
 
-            filteredHeadlines.forEach( (headline, index) => {
+            headlines.forEach( (headline, index) => {
                 if(index <= 1) {
                     item[headline.key] 
                     ? sideCells.push( <span>{ item[headline.key] }</span> )

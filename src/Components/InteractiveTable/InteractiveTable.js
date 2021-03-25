@@ -5,6 +5,7 @@ import TableBody from './TableBody';
 import Api from '../../api';
 import { fruitVocabulary, berryVocabulary } from '../../vocabulary';
 import './InteractiveTable.scss';
+import { filterHeadlines } from './util';
 
 
 class InteractiveTable extends Component {
@@ -98,6 +99,9 @@ class InteractiveTable extends Component {
     }
 
     render () {
+        const filteredHeadlines = filterHeadlines(this.state.headlines, this.state.hiddenColumns)
+
+
         return (
             <div className='interactiveTable' onScroll={this.checkScrollTop} ref={this.container}>
                 <TableFilter setFilter={this.setFilter} 
@@ -106,14 +110,14 @@ class InteractiveTable extends Component {
                              showColumn={this.showColumn}
                         />
                 <table>
-                    <TableHeader headlines={this.state.headlines} 
+                    <TableHeader headlines={filteredHeadlines} 
                                  sortASC={this.sortASC} 
                                  sortLabels={this.state.sortLabels}
                                  hideColumn={this.hideColumn}
                                  hiddenColumns={this.state.hiddenColumns}
                             />
                     <TableBody body={this.state.body} 
-                               headlines={this.state.headlines} 
+                               headlines={filteredHeadlines}
                                colName={this.state.key}
                                rule={this.state.rule}
                                sortLabels={this.state.sortLabels}

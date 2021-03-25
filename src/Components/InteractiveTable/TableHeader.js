@@ -5,31 +5,13 @@ const TableHeader = ({ headlines, sortASC, sortLabels, hideColumn, hiddenColumns
     let headlineList = [];
     let sideHeadlines = [];
 
-    let arr = [...headlines];
-
     if(headlines.length > 0) {
         
         for(let i = 0; i < 2; i++) {
             sideHeadlines.push( <span>{ headlines[i].title }</span> )
-        }
+        }  
 
-
-        if(hiddenColumns.length > 0) {
-            for(let i = 0; i < hiddenColumns.length; i++){
-
-                let elem = hiddenColumns[i];
-
-                arr = arr.filter( item => {
-                    return !(item.key === elem)
-                })
-            }
-
-        } else {
-            arr = [...headlines];
-        }
-        
-
-        headlineList = arr.map( (item, index) => {
+        headlineList = headlines.map( (item, index) => {
             if (index > 1) {
 
                 const button = <button onClick={ () => sortASC(item.key, item.rule) }>
