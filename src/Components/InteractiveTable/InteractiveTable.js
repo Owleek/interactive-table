@@ -16,7 +16,7 @@ class InteractiveTable extends Component {
     state = {
         body: [],
         headlines: [],
-        portionNumber: 0,
+        // portionNumber: 0,
         key: null,
         rule: 'text',
         sortLabels: null,
@@ -91,8 +91,8 @@ class InteractiveTable extends Component {
         }
 
         this.setState( (state)=>{
-            return { body: [...state.body, ...Api.getPortionData(4, state.portionNumber)],
-                portionNumber: state.portionNumber + 1
+            return { body: [...state.body, ...Api.getPortionData(20)]
+                // portionNumber: state.portionNumber + 1
             }
         })
     }

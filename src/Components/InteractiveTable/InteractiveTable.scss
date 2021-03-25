@@ -54,7 +54,7 @@ $lightblue: rgb(230, 230, 230);
             background-color: $grey;
             position: sticky;
             z-index: 1;
-            white-space: pre-line;
+            white-space: nowrap;
 
             &:first-child {
                 left: 0;

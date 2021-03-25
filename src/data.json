@@ -61,9 +61,9 @@
             "decimal": "346"
         },
         {
-            "title": "Абрикос",
+            "title": "Малина",
             "id": "10811",
-            "weight": "19 кг",
+            "weight": "88 кг",
             "box": "63 шт",
             "plan": "22 %",
             "cost": "801 руб",
@@ -121,7 +121,7 @@
             "decimal": "12"
         },
         {
-            "title": "Малина",
+            "title": "Абрикос",
             "id": "10807",
             "weight": "60 кг",
             "box": "34 шт",
@@ -149,66 +149,6 @@
             "cost": "762 руб",
             "availability": "да",
             "decimal": "36"
-        },
-        {
-            "title": "Авакадо",
-            "id": "10810",
-            "weight": "11 кг",
-            "box": "6 шт",
-            "plan": "52 %",
-            "cost": "68 руб",
-            "availability": "да",
-            "decimal": "78"
-        },
-        {
-            "title": "Черника",
-            "id": "10806",
-            "weight": "6 кг",
-            "box": "3 шт",
-            "plan": "13 %",
-            "cost": "63 руб",
-            "availability": "да",
-            "decimal": "12"
-        },
-        {
-            "title": "Малина",
-            "id": "10807",
-            "weight": "60 кг",
-            "box": "34 шт",
-            "plan": "86 %",
-            "cost": "369 руб",
-            "availability": "нет",
-            "decimal": "24"
-        },
-        {
-            "title": "Смородина",
-            "id": "10808",
-            "weight": "50 кг",
-            "box": "44 шт",
-            "plan": "99 %",
-            "cost": "827 руб",
-            "availability": "да",
-            "decimal": "89"
-        },
-        {
-            "title": "Апельсин",
-            "id": "10809",
-            "weight": "100 кг",
-            "box": "75 шт",
-            "plan": "66 %",
-            "cost": "762 руб",
-            "availability": "да",
-            "decimal": "36"
-        },
-        {
-            "title": "Авакадо",
-            "id": "10810",
-            "weight": "11 кг",
-            "box": "6 шт",
-            "plan": "52 %",
-            "cost": "68 руб",
-            "availability": "да",
-            "decimal": "78"
         }
     ]
 }

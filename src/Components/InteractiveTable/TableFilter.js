@@ -9,7 +9,7 @@ const TableFilter = ({ setFilter, removeFilter, hiddenColumns, showColumn, itemR
  
     let deliveryPrefix = 'd',
         deliveryValues = [],
-        delivery = ['Мелкие поставки', 'Крупные поставки'];
+        delivery = ['≤ 50 кг', '> 50 кг'];
     
 
     const [fruitBusy, setFruitState] = useState('');
@@ -77,8 +77,6 @@ const TableFilter = ({ setFilter, removeFilter, hiddenColumns, showColumn, itemR
     let hiddenBlock = null;
 
     if(hiddenColumns.length > 0) {
-
-
 
         hiddenBlock = <div className="interactiveTable__tagsContainer">
                         Скрытые колонки:

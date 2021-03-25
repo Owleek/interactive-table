@@ -30,12 +30,12 @@ export const filterBody = ( body, filter, colName, rule, sortLabels) => {
             switch(elem) {
                 case 'd0': 
                     copiedBody = copiedBody.filter( item => {
-                        return (parseFloat(item.weight) <= 40)
+                        return (parseFloat(item.weight) <= 50)
                     });
                     break;
                 case 'd1':
                     copiedBody = copiedBody.filter( item => {
-                        return (parseFloat(item.weight) > 40)
+                        return (parseFloat(item.weight) > 50)
                     });
                     break;
                 case 'f0':
@@ -93,6 +93,7 @@ export const calculateData = (filteredBody, filteredHeadlines) => {
 
     filteredHeadlines.forEach( item => {
         let value = '';
+        let data = 0;
 
         switch(item.key) {
             case 'weight':
@@ -119,12 +120,13 @@ export const calculateData = (filteredBody, filteredHeadlines) => {
                 inTotal.push(sumFunction(filteredBody, item.key) + value);
                 break
             case "2":
-                inTotal.push('средн. ~' + avgFunction(filteredBody, item.key) + value);
+                data = avgFunction(filteredBody, item.key)
+                inTotal.push('средн. ~' + data + value);
+                debugger
                 break
         }
     })
 
-    debugger
     return inTotal;
 }
 
@@ -142,10 +144,15 @@ const sumFunction = (array, item) => {
 
 const avgFunction = (array, item) => {
     let sum = 0;
-    
-    array.forEach( row => {
-        sum += parseFloat(row[item])
-    })
 
-    return (sum / array.length).toFixed(0);
+    if(array.length === 0) {
+        return 0;
+    } else {
+        array.forEach( row => {
+            sum += parseFloat(row[item])
+        })
+
+        return (sum / array.length).toFixed(0);
+    }
+
 }

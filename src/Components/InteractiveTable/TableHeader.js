@@ -15,16 +15,16 @@ const TableHeader = ({ headlines, setSort, sortLabels, hideColumn, inTotal, item
     const headlineList = headlines.map( (item, index) => {
         if (index > 1) {
 
-            const button = <button onClick={ () => setSort(item.key, item.rule) }>
+            const button = <button onClick={ () => setSort(item.key, item.rule) } title="сортировать">
                                 {sortLabels[item.key] ? '↑': '↓'} 
                             </button>
 
             return <th className="th" style={{top: filterHeight+'px'}}>
-                <button onClick={ () => hideColumn(item.key) }>x</button><br/>
-                { item.title }<br/> 
-                <nobr>
-                сортировать: { button }
-                </nobr>
+                <nobr style={{display: "inline-block", verticalAlign: "middle"}}>
+                    { button }
+                    <button onClick={ () => hideColumn(item.key) } title="Скрыть колонку">x</button><br/>
+                </nobr><br/>
+                { item.title } 
             </th>
         }
     })
