@@ -34,10 +34,25 @@ $lightblue: rgb(230, 230, 230);
     
     thead {
 
-        th {
+        .th {
             background-color: $blue;
             position: sticky;
             top: 0;
+            z-index: 1;
+            white-space: pre-line;
+
+            &:first-child {
+                left: 0;
+                width: 25%;
+                padding: 0;
+                z-index: 2;
+                min-width: 400px;
+            }
+        }
+
+        .total {
+            background-color: $blue;
+            position: sticky;
             z-index: 1;
             white-space: pre-line;
 

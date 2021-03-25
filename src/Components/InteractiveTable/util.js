@@ -88,22 +88,43 @@ export const filterBody = ( body, filter, colName, rule, sortLabels) => {
 }
 
 
-export const calculateData = (filteredHeadlines, filteredBody) => {
+export const calculateData = (filteredBody, filteredHeadlines) => {
     let inTotal = [];
 
     filteredHeadlines.forEach( item => {
+        let value = '';
+
+        switch(item.key) {
+            case 'weight':
+                value = ' кг'
+                break
+            case 'plan':
+                value = ' %'
+                break
+            case 'box':
+                value = ' шт'
+                break
+            case 'cost':
+                value = ' руб'
+                break
+            default: 
+                break
+        }
+
         switch(item.value) {
-            case 0:
-                inTotal.push(null);
+            case "0":
+                inTotal.push('');
                 break
-            case 1:
-                inTotal.push(sumFunction(filteredBody, item.key))
+            case "1":
+                inTotal.push(sumFunction(filteredBody, item.key) + value);
                 break
-            case 2:
-                inTotal.push(avgFunction(filteredBody, item.key))
+            case "2":
+                inTotal.push('средн. ~' + avgFunction(filteredBody, item.key) + value);
                 break
         }
     })
+
+    debugger
     return inTotal;
 }
 
@@ -115,7 +136,7 @@ const sumFunction = (array, item) => {
         sum += parseFloat(row[item])
     })
 
-    return sum;
+    return sum.toFixed(0);
 }
 
 
@@ -126,5 +147,5 @@ const avgFunction = (array, item) => {
         sum += parseFloat(row[item])
     })
 
-    return sum / array.length;
+    return (sum / array.length).toFixed(0);
 }

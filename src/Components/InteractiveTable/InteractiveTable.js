@@ -3,9 +3,8 @@ import TableFilter from './TableFilter';
 import TableHeader from './TableHeader';
 import TableBody from './TableBody';
 import Api from '../../api';
-import { fruitVocabulary, berryVocabulary } from '../../vocabulary';
 import './InteractiveTable.scss';
-import { filterHeadlines, filterBody } from './util';
+import { filterHeadlines, filterBody, calculateData } from './util';
 
 
 class InteractiveTable extends Component {
@@ -46,7 +45,7 @@ class InteractiveTable extends Component {
         })
     }
 
-    sortASC = (key, rule) => {
+    setSort = (key, rule) => {
         this.setState((state) => {
             return {key, rule, sortLabels: {...state.sortLabels, [key]: !state.sortLabels[key]}};
         });
@@ -102,6 +101,7 @@ class InteractiveTable extends Component {
         if(this.state.body.length > 0 && this.state.body.length > 0) {
             const filteredHeadlines = filterHeadlines(this.state.headlines, this.state.hiddenColumns)
             const filteredBody = filterBody(this.state.body, this.state.filter, this.state.key, this.state.rule, this.state.sortLabels)
+            const inTotal = calculateData(filteredBody, filteredHeadlines)
 
             return  (
                 <div className='interactiveTable' onScroll={this.checkScrollTop} ref={this.container}>
@@ -112,10 +112,11 @@ class InteractiveTable extends Component {
                             />
                     <table>
                         <TableHeader headlines={filteredHeadlines} 
-                                    sortASC={this.sortASC} 
+                                    setSort={this.setSort} 
                                     sortLabels={this.state.sortLabels}
                                     hideColumn={this.hideColumn}
                                     hiddenColumns={this.state.hiddenColumns}
+                                    inTotal={inTotal}
                                 />
                         <TableBody body={filteredBody} headlines={filteredHeadlines} />
                     </table>

@@ -78,12 +78,37 @@ const TableFilter = ({ setFilter, removeFilter, hiddenColumns, showColumn }) => 
 
     if(hiddenColumns.length > 0) {
 
+
+
         hiddenBlock = <div className="InteractiveTable__tagsContainer">
                         Скрытые колонки:
                         <div className="InteractiveTable__tags">
                             {
                                 hiddenColumns.map( item => {
-                                    return <Tag content={item} callback={ () => showColumn(item) }/>
+                                    let value = '';
+
+                                    switch(item) {
+                                        case 'weight':
+                                            value = 'Вес'
+                                            break
+                                        case 'box':
+                                            value = 'Боксы'
+                                            break
+                                        case 'availability':
+                                            value = 'Доставлено'
+                                            break
+                                        case 'plan':
+                                            value = 'План'
+                                            break
+                                        case 'cost':
+                                            value = 'Стоимость'
+                                            break
+                                        case 'decimal':
+                                            value = 'Число'
+                                            break
+                                    }
+
+                                    return <Tag content={value} callback={ () => showColumn(item) }/>
                                 })
                             }
                         </div>

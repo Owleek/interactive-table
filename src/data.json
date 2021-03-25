@@ -3,51 +3,59 @@
         {
             "title": "Наименование",
             "key": "title",
-            "rule": "text"
+            "rule": "text",
+            "value": "0"
         },
         {
             "title": "Код товара",
             "key": "id",
-            "rule": "number"
-        },
-        {
-            "title": "Доставлено",
-            "key": "availability",
-            "rule": "text"
+            "rule": "number",
+            "value": "0"
         },
         {
             "title": "Вес",
             "key": "weight",
-            "rule": "number"
+            "rule": "number",
+            "value": "1"
         },
         {
             "title": "Количество боксов",
             "key": "box",
-            "rule": "number"
+            "rule": "number",
+            "value": "1"
+        },
+        {
+            "title": "Доставлено",
+            "key": "availability",
+            "rule": "text",
+            "value": "0"
         },
         {
             "title": "План",
             "key": "plan",
-            "rule": "number"
+            "rule": "number",
+            "value": "2"
         },
         {
             "title": "Затраты",
             "key": "cost",
-            "rule": "number"
+            "rule": "number",
+            "value": "1"
         },
         {
             "title": "Число",
             "key": "decimal",
-            "rule": "number"
+            "rule": "number",
+            "value": "2"
         }
     ],
     "body": [
         {
             "title": "Яблоко",
             "id": "10801",
-            "availability": "да",
             "weight": "10 кг",
             "box": "30 шт",
+            "availability": "да",
             "plan": "80 %",
             "cost": "302 руб",
             "decimal": "346"
@@ -55,9 +63,9 @@
         {
             "title": "Абрикос",
             "id": "10811",
-            "availability": "да",
             "weight": "19 кг",
             "box": "63 шт",
+            "availability": "да",
             "plan": "22 %",
             "cost": "801 руб",
             "decimal": "68"
@@ -65,9 +73,9 @@
         {
             "title": "Груша",
             "id": "10802",
-            "availability": "да",
             "weight": "5 кг",
             "box": "22 шт",
+            "availability": "да",
             "plan": "69 %",
             "cost": "609 руб",
             "decimal": "36"
@@ -75,9 +83,9 @@
         {
             "title": "Вишня",
             "id": "10803",
-            "availability": "нет",
             "weight": "15 кг",
             "box": "10 шт",
+            "availability": "нет",
             "plan": "45 %",
             "cost": "500 руб",
             "decimal": "6"
@@ -85,9 +93,9 @@
         {
             "title": "Черешня",
             "id": "10804",
-            "availability": "нет",
             "weight": "20 кг",
             "box": "17 шт",
+            "availability": "нет",
             "plan": "55 %",
             "cost": "450 руб",
             "decimal": "46"
@@ -95,9 +103,9 @@
         {
             "title": "Земляника",
             "id": "10805",
-            "availability": "да",
             "weight": "41 кг",
             "box": "60 шт",
+            "availability": "да",
             "plan": "92 %",
             "cost": "711 руб",
             "decimal": "78"
@@ -105,9 +113,9 @@
         {
             "title": "Черника",
             "id": "10806",
-            "availability": "да",
             "weight": "6 кг",
             "box": "3 шт",
+            "availability": "да",
             "plan": "13 %",
             "cost": "63 руб",
             "decimal": "12"
@@ -115,9 +123,9 @@
         {
             "title": "Малина",
             "id": "10807",
-            "availability": "нет",
             "weight": "60 кг",
             "box": "34 шт",
+            "availability": "нет",
             "plan": "86 %",
             "cost": "369 руб",
             "decimal": "24"
@@ -125,9 +133,9 @@
         {
             "title": "Смородина",
             "id": "10808",
-            "availability": "да",
             "weight": "50 кг",
             "box": "44 шт",
+            "availability": "да",
             "plan": "99 %",
             "cost": "827 руб",
             "decimal": "89"
@@ -135,9 +143,9 @@
         {
             "title": "Апельсин",
             "id": "10809",
-            "availability": "да",
             "weight": "100 кг",
             "box": "75 шт",
+            "availability": "да",
             "plan": "66 %",
             "cost": "762 руб",
             "decimal": "36"
@@ -145,9 +153,9 @@
         {
             "title": "Авакадо",
             "id": "10810",
-            "availability": "да",
             "weight": "11 кг",
             "box": "6 шт",
+            "availability": "да",
             "plan": "52 %",
             "cost": "68 руб",
             "decimal": "78"
