@@ -159,6 +159,56 @@
             "plan": "52 %",
             "cost": "68 руб",
             "decimal": "78"
+        },
+        {
+            "title": "Черника",
+            "id": "10806",
+            "weight": "6 кг",
+            "box": "3 шт",
+            "availability": "да",
+            "plan": "13 %",
+            "cost": "63 руб",
+            "decimal": "12"
+        },
+        {
+            "title": "Малина",
+            "id": "10807",
+            "weight": "60 кг",
+            "box": "34 шт",
+            "availability": "нет",
+            "plan": "86 %",
+            "cost": "369 руб",
+            "decimal": "24"
+        },
+        {
+            "title": "Смородина",
+            "id": "10808",
+            "weight": "50 кг",
+            "box": "44 шт",
+            "availability": "да",
+            "plan": "99 %",
+            "cost": "827 руб",
+            "decimal": "89"
+        },
+        {
+            "title": "Апельсин",
+            "id": "10809",
+            "weight": "100 кг",
+            "box": "75 шт",
+            "availability": "да",
+            "plan": "66 %",
+            "cost": "762 руб",
+            "decimal": "36"
+        },
+        {
+            "title": "Авакадо",
+            "id": "10810",
+            "weight": "11 кг",
+            "box": "6 шт",
+            "availability": "да",
+            "plan": "52 %",
+            "cost": "68 руб",
+            "decimal": "78"
         }
     ]
 }

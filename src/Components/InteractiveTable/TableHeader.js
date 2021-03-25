@@ -1,7 +1,10 @@
-import React from 'react';
+import React, {useEffect, useRef, useState} from 'react';
 
 const TableHeader = ({ headlines, setSort, sortLabels, hideColumn, inTotal }) => {
     debugger
+
+    const headerRow = React.createRef();
+    const [headerRowHeight, setHeaderRowHeight] = useState(0);
 
     let sideHeadlines = [];
         
@@ -29,16 +32,20 @@ const TableHeader = ({ headlines, setSort, sortLabels, hideColumn, inTotal }) =>
     const totalList = inTotal.map( (item, index) => {
         if (index > 1) {
             return (
-                <th className="total">
+                <th className="total" style={{top: headerRowHeight+'px'}}>
                 { item }
                 </th>
             )
         }
     })
 
+    useEffect(()=>{
+        setHeaderRowHeight(headerRow.current.offsetHeight);
+    }, [headlines])
+
     return (
         <thead>
-            <tr>
+            <tr ref={headerRow}>
                 <th className="th">
                     <span className="interactiveTable__numbering">№</span>
                     { sideHeadlines }
@@ -46,7 +53,7 @@ const TableHeader = ({ headlines, setSort, sortLabels, hideColumn, inTotal }) =>
                 { headlineList }
             </tr>
             <tr>
-                <th className="total">
+                <th className="total" style={{top: headerRowHeight+'px'}}>
                     итого:
                 </th>
                 { totalList }
