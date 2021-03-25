@@ -5,7 +5,7 @@ import TableBody from './TableBody';
 import Api from '../../api';
 import { fruitVocabulary, berryVocabulary } from '../../vocabulary';
 import './InteractiveTable.scss';
-import { filterHeadlines } from './util';
+import { filterHeadlines, filterBody } from './util';
 
 
 class InteractiveTable extends Component {
@@ -99,36 +99,29 @@ class InteractiveTable extends Component {
     }
 
     render () {
-        const filteredHeadlines = filterHeadlines(this.state.headlines, this.state.hiddenColumns)
+        if(this.state.body.length > 0 && this.state.body.length > 0) {
+            const filteredHeadlines = filterHeadlines(this.state.headlines, this.state.hiddenColumns)
+            const filteredBody = filterBody(this.state.body, this.state.filter, this.state.key, this.state.rule, this.state.sortLabels)
 
-
-        return (
-            <div className='interactiveTable' onScroll={this.checkScrollTop} ref={this.container}>
-                <TableFilter setFilter={this.setFilter} 
-                             removeFilter={this.removeFilter} 
-                             hiddenColumns={this.state.hiddenColumns}
-                             showColumn={this.showColumn}
-                        />
-                <table>
-                    <TableHeader headlines={filteredHeadlines} 
-                                 sortASC={this.sortASC} 
-                                 sortLabels={this.state.sortLabels}
-                                 hideColumn={this.hideColumn}
-                                 hiddenColumns={this.state.hiddenColumns}
+            return  (
+                <div className='interactiveTable' onScroll={this.checkScrollTop} ref={this.container}>
+                    <TableFilter setFilter={this.setFilter} 
+                                removeFilter={this.removeFilter} 
+                                hiddenColumns={this.state.hiddenColumns}
+                                showColumn={this.showColumn}
                             />
-                    <TableBody body={this.state.body} 
-                               headlines={filteredHeadlines}
-                               colName={this.state.key}
-                               rule={this.state.rule}
-                               sortLabels={this.state.sortLabels}
-                               filter={this.state.filter}
-                               fruitVocabulary={fruitVocabulary}
-                               berryVocabulary={berryVocabulary}
-                               hiddenColumns={this.state.hiddenColumns}
-                            />
-                </table>
-            </div>
-        )
+                    <table>
+                        <TableHeader headlines={filteredHeadlines} 
+                                    sortASC={this.sortASC} 
+                                    sortLabels={this.state.sortLabels}
+                                    hideColumn={this.hideColumn}
+                                    hiddenColumns={this.state.hiddenColumns}
+                                />
+                        <TableBody body={filteredBody} headlines={filteredHeadlines} />
+                    </table>
+                </div>
+            )
+        } return null
     }
 }
 

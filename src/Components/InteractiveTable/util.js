@@ -19,24 +19,23 @@ export const filterHeadlines = (headlines, hiddenItems) => {
 }
 
 
-export const filterBody = ( body, filtedParams, colName, rule, sortLabels) => {    
+export const filterBody = ( body, filter, colName, rule, sortLabels) => {
+
     let copiedBody = [...body];
     
-    if(filtedParams.length > 0) {
+    if(filter.length > 0) {
+        for(let i = 0; i < filter.length; i++){
 
-        for(let i = 0; i < filtedParams.length; i++){
-
-            let elem = filtedParams[i];
-
+            let elem = filter[i];
             switch(elem) {
                 case 'd0': 
                     copiedBody = copiedBody.filter( item => {
-                        return (parseFloat(item.weight) <= 50)
+                        return (parseFloat(item.weight) <= 40)
                     });
                     break;
                 case 'd1':
                     copiedBody = copiedBody.filter( item => {
-                        return (parseFloat(item.weight) > 50)
+                        return (parseFloat(item.weight) > 40)
                     });
                     break;
                 case 'f0':
@@ -55,9 +54,7 @@ export const filterBody = ( body, filtedParams, colName, rule, sortLabels) => {
             
         }
 
-    } else {
-        return copiedBody
-    }
+    } 
 
     if(colName) {
 
@@ -86,7 +83,10 @@ export const filterBody = ( body, filtedParams, colName, rule, sortLabels) => {
             }
         }
     }
+    
+    return copiedBody
 }
+
 
 export const calculateData = (filteredHeadlines, filteredBody) => {
     let inTotal = [];
