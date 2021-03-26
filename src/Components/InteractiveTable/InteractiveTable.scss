@@ -2,6 +2,68 @@ $blue: rgb(176, 195, 255);
 $grey: #d2d2d2;
 $lightblue: rgb(230, 230, 230);
 
+
+@font-face {
+    font-family: 'fontello';
+    src: url('./fonts/fontello.eot?91441283');
+    src: url('./fonts/fontello.eot?91441283#iefix') format('embedded-opentype'),
+         url('./fonts/fontello.woff2?91441283') format('woff2'),
+         url('./fonts/fontello.woff?91441283') format('woff'),
+         url('./fonts/fontello.ttf?91441283') format('truetype'),
+         url('./fonts/fontello.svg?91441283#fontello') format('svg');
+    font-weight: normal;
+    font-style: normal;
+  }
+  /* Chrome hack: SVG is rendered more smooth in Windozze. 100% magic, uncomment if you need it. */
+  /* Note, that will break hinting! In other OS-es font will be not as sharp as it could be */
+  /*
+  @media screen and (-webkit-min-device-pixel-ratio:0) {
+    @font-face {
+      font-family: 'fontello';
+      src: url('../font/fontello.svg?91441283#fontello') format('svg');
+    }
+  }
+  */
+   
+   [class^="icon-"]:before, [class*=" icon-"]:before {
+    font-family: "fontello";
+    font-style: normal;
+    font-weight: normal;
+    speak: never;
+   
+    display: inline-block;
+    text-decoration: inherit;
+    width: 1em;
+    margin-right: .2em;
+    text-align: center;
+    /* opacity: .8; */
+   
+    /* For safety - reset parent styles, that can break glyph codes*/
+    font-variant: normal;
+    text-transform: none;
+   
+    /* fix buttons height, for twitter bootstrap */
+    line-height: 1em;
+   
+    /* Animation center compensation - margins should be symmetric */
+    /* remove if not needed */
+    margin-left: .2em;
+   
+    /* you can be more comfortable with increased icons size */
+    /* font-size: 120%; */
+   
+    /* Font smoothing. That was taken from TWBS */
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+   
+    /* Uncomment for 3D effect */
+    /* text-shadow: 1px 1px 1px rgba(127, 127, 127, 0.3); */
+}
+   
+.icon-eye-off:before { content: '\e800'; } /* '' */
+.icon-sort-alt-up:before { content: '\f160'; } /* '' */
+.icon-sort-alt-down:before { content: '\f161'; }
+
 .interactiveTable {
     max-width: 900px;
     margin: 0 auto;
@@ -20,6 +82,7 @@ $lightblue: rgb(230, 230, 230);
 
     td, th, span {
         padding: 15px 20px;
+        text-align: center;
     }
 
     ul {
@@ -40,6 +103,8 @@ $lightblue: rgb(230, 230, 230);
             position: sticky;
             z-index: 1;
             white-space: pre-line;
+            cursor: grab;
+            padding-top: 35px;
 
             &:first-child {
                 left: 0;
@@ -47,6 +112,7 @@ $lightblue: rgb(230, 230, 230);
                 padding: 0;
                 z-index: 2;
                 min-width: 400px;
+                cursor: default;
             }
         }
 
@@ -120,7 +186,7 @@ $lightblue: rgb(230, 230, 230);
 
     h4 {
         margin: 0;
-        margin-bottom: 20px;
+        margin-right: 20px;
     }
 }
 
@@ -130,7 +196,36 @@ $lightblue: rgb(230, 230, 230);
 }
 
 
+
+.interactiveTable__filterBox {
+    display: flex;
+}
+
+.interactiveTable__filterItem {
+    margin-right: 20px;
+}
+
 .interactiveTable__tags {
     display: inline-block;
     margin-left: 10px;
+}
+
+.interactiveTable__tools {
+    white-space: nowrap;
+    display: inline-block;
+    position: absolute;
+    top: 10px; left: 50%;
+    transform: translateX(-50%);
+}
+
+.interactiveTable__tool {
+    height: 20px;
+    margin: 0 2px;
+    width: auto;
+    font-size: 17px;
+    border: none;
+    background: transparent;
+    color: #ffffff;
+    outline: none;
+    cursor: pointer;
 }

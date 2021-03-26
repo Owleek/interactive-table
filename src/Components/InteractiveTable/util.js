@@ -30,12 +30,12 @@ export const filterBody = ( body, filter, colName, rule, sortLabels) => {
             switch(elem) {
                 case 'd0': 
                     copiedBody = copiedBody.filter( item => {
-                        return (parseFloat(item.weight) <= 50)
+                        return (parseFloat(item.weight) <= 150)
                     });
                     break;
                 case 'd1':
                     copiedBody = copiedBody.filter( item => {
-                        return (parseFloat(item.weight) > 50)
+                        return (parseFloat(item.weight) > 150)
                     });
                     break;
                 case 'f0':
@@ -120,9 +120,11 @@ export const calculateData = (filteredBody, filteredHeadlines) => {
                 inTotal.push(sumFunction(filteredBody, item.key) + value);
                 break
             case "2":
-                data = avgFunction(filteredBody, item.key)
-                inTotal.push('средн. ~' + data + value);
-                debugger
+                data = avgFunction(filteredBody, item.key);
+                inTotal.push('средн. ' + data + value);
+                break
+            case "3":
+                inTotal.push(countString(filteredBody, item.key))
                 break
         }
     })
@@ -155,4 +157,41 @@ const avgFunction = (array, item) => {
         return (sum / array.length).toFixed(0);
     }
 
+}
+
+const countString = (array, item) => {
+    let allStrings = [];
+    let filteredStrings = [];
+    let values = [];
+    let resultArr = [];
+
+    if(array.length === 0) {
+        return 0;
+    } else {
+        array.forEach( row => {            
+            allStrings.push(row[item]);
+
+            if(!filteredStrings.includes(row[item])) {
+                filteredStrings.push(row[item]);
+            }
+        })
+
+        filteredStrings.forEach( (filteredItem, index) => {
+            let count = 0;
+            allStrings.forEach( nonFilteredItem => {
+                if(filteredItem === nonFilteredItem) {
+                    count++
+                }
+            })
+            values[index] = count;
+        })
+
+        resultArr = filteredStrings.map( (item, index) => {
+            return `${item} - ${values[index]}`
+        })
+
+        return resultArr.sort( (a, b) => {
+            return (a > b) ? 1: -1;
+        }).join(`, `)
+    }
 }

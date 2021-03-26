@@ -41,7 +41,7 @@ const headlines = [
       "title": "Доставлено",
       "key": "availability",
       "rule": "text",
-      "value": "0"
+      "value": "3"
     },
     {
       "title": "Число",
@@ -65,6 +65,10 @@ const names = [
     'Красная смородина', 'Кизил', 'Годжи ягоды', 'Инжир'
 ];
   
+
+
+
+
 const getArrayRandomValue = (array = []) => array[Math.floor(Math.random() * array.length)];
 const generateNumber = (min, max) => Math.floor(min + Math.random() * (max + 1 - min));
   
@@ -76,7 +80,7 @@ const generatorTypes = {
     box: () => `${generateNumber(1, 100)}шт.`,
     plan: () => `${generateNumber(0, 100)}%`,
     cost: () => `${generateNumber(1000, 20000)}руб.`,
-    availability: () => getArrayRandomValue(["да", "нет"]),
+    availability: () => getArrayRandomValue(["Да", "Нет"]),
     decimal: () => generateNumber(10, 200),
 };
   
@@ -108,7 +112,6 @@ const generateDataByCount = (count = 1) => {
 
 const API = {
     getHeadlines: () => response.headlines ,
-    
     getPortionData: (pageSize) => {
         return generateDataByCount(pageSize);
     }

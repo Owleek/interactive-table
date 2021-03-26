@@ -1,4 +1,3 @@
-import './App.css';
 import InteractiveTable from './Components/InteractiveTable/InteractiveTable'
 
 function App() {

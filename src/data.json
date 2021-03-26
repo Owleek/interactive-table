@@ -40,7 +40,7 @@
             "title": "Доставлено",
             "key": "availability",
             "rule": "text",
-            "value": "0"
+            "value": "3"
         },
         {
             "title": "Число",

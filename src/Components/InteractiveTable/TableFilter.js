@@ -9,7 +9,7 @@ const TableFilter = ({ setFilter, removeFilter, hiddenColumns, showColumn, itemR
  
     let deliveryPrefix = 'd',
         deliveryValues = [],
-        delivery = ['≤ 50 кг', '> 50 кг'];
+        delivery = ['≤ 150 кг', '> 150 кг'];
     
 
     const [fruitBusy, setFruitState] = useState('');
@@ -64,7 +64,7 @@ const TableFilter = ({ setFilter, removeFilter, hiddenColumns, showColumn, itemR
             array.push(value);
     
             return (
-                    <li>
+                    <li className="interactiveTable__filterItem">
                         <label>
                             <input type="checkbox" checked={checkFunc(value)} value={value} onChange={handleCheckbox}/>
                             {item} 
@@ -115,8 +115,8 @@ const TableFilter = ({ setFilter, removeFilter, hiddenColumns, showColumn, itemR
 
     return (
         <div className="interactiveTable__filterContainer" ref={itemRef}>
-            <h4>Фильтр:</h4>
-            <ul>
+            <ul className="interactiveTable__filterBox">
+                <li className="interactiveTable__filterItem">Фильтр:</li>
                 { createFields(fruits, fruitsPrefix, fruitValues, checkFruitBusy) }
                 { createFields(delivery, deliveryPrefix, deliveryValues, checkDeliveryBusy) }
             </ul>

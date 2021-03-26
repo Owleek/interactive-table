@@ -21,10 +21,49 @@ class InteractiveTable extends Component {
         rule: 'text',
         sortLabels: null,
         filter: [],
-        hiddenColumns: []
+        hiddenColumns: [],
+        curentHead: null,
     }
 
     container = React.createRef();
+
+    dragStartHandler = (e, head) => {
+      this.setState( () => {
+        return {
+            curentHead: head
+        }
+      })
+    }
+  
+    dragEndHandler = (e) => {
+      e.target.style.background = '#B0C3FF';
+    }
+  
+    dragOverHandler = (e) => {
+      e.preventDefault();
+      e.target.style.background = '#ddf3dc';
+    }
+  
+    dropHandler = (e, head) => {
+        e.preventDefault();
+  
+        this.setState((state) => {
+            return {
+                headlines: state.headlines.map(c => {
+                    if (c.key === head.key) {
+                        return { ...state.curentHead }
+                    }
+                    if (c.key === state.curentHead.key) {
+                        return { ...head }
+                    }
+                    return c
+                })
+            }
+        })
+
+        e.target.style.background = '#B0C3FF';
+    }
+
 
 
     showColumn = (column) => {
@@ -121,6 +160,10 @@ class InteractiveTable extends Component {
                                     hiddenColumns={this.state.hiddenColumns}
                                     inTotal={inTotal}
                                     itemRef={filterRef}
+                                    dragStartHandler = {this.dragStartHandler}
+                                    dragEndHandler = {this.dragEndHandler}
+                                    dragOverHandler = {this.dragOverHandler}
+                                    dropHandler = {this.dropHandler}
                                 />
                         <TableBody body={filteredBody} headlines={filteredHeadlines} />
                     </table>
