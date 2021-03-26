@@ -113,6 +113,10 @@ $lightblue: rgb(230, 230, 230);
                 z-index: 2;
                 min-width: 400px;
                 cursor: default;
+
+                @media (max-width: 900px) {
+                    min-width: 200px;
+                }
             }
         }
 
@@ -128,6 +132,9 @@ $lightblue: rgb(230, 230, 230);
                 padding: 0;
                 z-index: 2;
                 min-width: 400px;
+                @media (max-width: 900px) {
+                    min-width: 350px;
+                }
             }
         }
     }
@@ -147,6 +154,10 @@ $lightblue: rgb(230, 230, 230);
         text-align: center;
         padding-left: 10px !important;
         padding-right: 10px !important;
+
+        @media (max-width: 900px) { 
+            padding-right: 0 !important;
+        }
     }
 }
 
@@ -159,7 +170,7 @@ $lightblue: rgb(230, 230, 230);
     background-color: $lightblue;
     display: inline-block;
     text-align: left;
-    margin: 0 5px;
+    margin-right: 10px;
 
     &__close {
         position: absolute;
@@ -176,6 +187,7 @@ $lightblue: rgb(230, 230, 230);
     top: 0; left: 0;
     z-index: 3;
     padding-top: 20px;
+    padding-left: 20px;
     padding-bottom: 1px;
 
     ul {
@@ -207,7 +219,10 @@ $lightblue: rgb(230, 230, 230);
 
 .interactiveTable__tags {
     display: inline-block;
-    margin-left: 10px;
+}
+
+.interactiveTable__tagsTitle {
+    margin-bottom: 15px;
 }
 
 .interactiveTable__tools {

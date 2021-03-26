@@ -16,7 +16,7 @@ class InteractiveTable extends Component {
     state = {
         body: [],
         headlines: [],
-        // portionNumber: 0,
+        requestNumber: 10,
         key: null,
         rule: 'text',
         sortLabels: null,
@@ -107,33 +107,44 @@ class InteractiveTable extends Component {
     checkScrollTop = () => {
         let elem = this.container.current;
         let result = elem.scrollHeight - (elem.scrollTop + elem.clientHeight)
-        if(result === 0) {
-            this.uploadData();
-        }
+
+        // if(result === 0) {
+             // this.uploadData();
+        // }   
+
+        setTimeout(() => {
+            if(result === 0) {
+                this.uploadData();
+            }   
+        }, 1000);
     }
 
     uploadData = () => {
-        if(this.state.headlines.length === 0) {
-            this.setState( () => {
-
-                const newObj = {};
-                const headlines = Api.getHeadlines();
-
-                headlines.forEach( item => {
-                    newObj[item.key] = true;
+        if(this.state.requestNumber < 20) {
+            if(this.state.headlines.length === 0) {
+                this.setState( () => {
+    
+                    const newObj = {};
+                    const headlines = Api.getHeadlines();
+    
+                    headlines.forEach( item => {
+                        newObj[item.key] = true;
+                    })
+                
+                    return { headlines: headlines,
+                        sortLabels: {...newObj}
+                    }
                 })
-            
-                return { headlines: headlines,
-                    sortLabels: {...newObj}
+            }
+    
+            this.setState( (state)=>{
+                return { body: [...state.body, ...Api.getPortionData(14)],
+                    requestNumber: state.requestNumber + 1
+                    // portionNumber: state.portionNumber + 1
                 }
             })
-        }
 
-        this.setState( (state)=>{
-            return { body: [...state.body, ...Api.getPortionData(20)]
-                // portionNumber: state.portionNumber + 1
-            }
-        })
+        }
     }
 
     render () {

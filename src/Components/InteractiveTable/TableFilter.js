@@ -79,7 +79,7 @@ const TableFilter = ({ setFilter, removeFilter, hiddenColumns, showColumn, itemR
     if(hiddenColumns.length > 0) {
 
         hiddenBlock = <div className="interactiveTable__tagsContainer">
-                        Скрытые колонки:
+                        <div className="interactiveTable__tagsTitle">Скрытые колонки:</div>
                         <div className="interactiveTable__tags">
                             {
                                 hiddenColumns.map( item => {
